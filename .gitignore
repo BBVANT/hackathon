@@ -1,0 +1,7 @@
+.metadata/
+.recommenders/
+libraries/
+jsonapi_y/bin/
+jsonapi_y/bin/
+jsonapi_y/.classpath
+jsonapi_y/.settings/org.eclipse.jdt.core.prefs/
