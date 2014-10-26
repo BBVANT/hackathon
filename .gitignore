@@ -1,5 +1,6 @@
 libraries/
 JSON API y/.metadata/
 JSON API y/jsonapi_y/.settings/
-JSON API y/jsonapi_y/.classpath
+*.project
+*.classpath
 *.class
