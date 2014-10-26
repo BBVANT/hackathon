@@ -49,7 +49,7 @@ public class JSONapi_y_complete {
 		JSONParser parser = new JSONParser();	// Analizador semantico (parser)
 		
 		try {
-			Object obj = parser.parse(serverData);
+			Object obj = parser.parse(serverData);	// Lectura de datos recogidos del servidor
 			
 			JSONObject object = (JSONObject)obj;
 			System.out.println("  Result:");
@@ -59,11 +59,11 @@ public class JSONapi_y_complete {
 			JSONArray stats = (JSONArray)(((JSONObject)object.get("data")).get("stats"));
 			System.out.println("	Stats:");
 			byte month = 0, age = 0;
-			for(month = 0; month <= 2; month++){
+			for(month = 0; month <= 2; month++){	// Repetición para todos los meses (3 -> 0 al 2)
 				System.out.println("		Date: " + (String)((JSONObject)stats.get(month)).get("date"));
 				JSONArray histogram = (JSONArray)((JSONObject)stats.get(month)).get("histogram");
 				System.out.println("		Histogram:");
-				for(age = 0; age <= 7; age++){
+				for(age = 0; age <= 7; age++){	// Repetición para todos los grupos de edad (8 -> 0 al 7)
 					System.out.println("			Ages: " + ((JSONObject)histogram.get(age)).get("ages"));
 					System.out.println("			Num_payments: " + ((JSONObject)histogram.get(age)).get("num_payments"));
 					System.out.println("			Avg: " + ((JSONObject)histogram.get(age)).get("avg"));
