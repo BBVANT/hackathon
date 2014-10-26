@@ -2,7 +2,7 @@ package src.jsonapi_y;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+import java.util.Scanner;
 
 // APACHE  - para la REST API (coger los datos del servidor)
 	import org.apache.http.HttpResponse;
@@ -19,8 +19,13 @@ import java.io.InputStreamReader;
 
 public class JSONapi_y_complete {
 	public static void main(String[] args) throws Exception {
+		// Petición de datos al usuario
+		System.out.print("Código postal: ");
+		Scanner input = new Scanner(System.in);
+		int zip = input.nextInt();
+		input.close();
 		// Llamada a la API
-        String url = "https://apis.bbvabancomer.com/datathon/zipcodes/44190/age_distribution?date_min=20140101&date_max=20140331&group_by=month";
+        String url = "https://apis.bbvabancomer.com/datathon/zipcodes/" + String.format("%05d", zip) + "/age_distribution?date_min=20140101&date_max=20140331&group_by=month";
         HttpClientBuilder hcBuilder = HttpClients.custom();
         HttpClient client = hcBuilder.build() ;
         HttpGet request = new HttpGet(url);
