@@ -1,4 +1,4 @@
-package src.jsonapi_y;
+package basics;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

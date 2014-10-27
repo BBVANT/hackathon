@@ -1,4 +1,4 @@
-package src.jsonapi_y;
+package basics;
 
 // JSON - para interpretar los datos del servidor
 	//import org.json.simple.JSONObject;

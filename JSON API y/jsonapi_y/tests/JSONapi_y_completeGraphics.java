@@ -1,23 +1,30 @@
-package src.jsonapi_y;
+package tests;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+
 // APACHE  - para la REST API (coger los datos del servidor)
 	import org.apache.http.HttpResponse;
-	import org.apache.http.client.HttpClient;
-	import org.apache.http.client.methods.HttpGet;
-	import org.apache.http.impl.client.HttpClientBuilder;
-	import org.apache.http.impl.client.HttpClients;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 
 // JSON - para interpretar los datos del servidor
 	import org.json.simple.JSONObject;
-	import org.json.simple.JSONArray;
-	import org.json.simple.parser.ParseException;
-	import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+import org.json.simple.parser.JSONParser;
+	
+// JFREECHART - para crear las gráficas de datos
+	import org.jfree.chart.*;
+	import org.jfree.data.*;
+	import org.jfree.data.general.DefaultPieDataset;
 
-public class JSONapi_y_complete {
+public class JSONapi_y_completeGraphics {
+		
 	public static void main(String[] args) throws Exception {
 		// Petición de datos al usuario
 		System.out.print("Código postal: ");
@@ -47,6 +54,8 @@ public class JSONapi_y_complete {
         String serverData = result.toString();
         System.out.println(serverData);
         decode(serverData);
+        DefaultPieDataset graphic = new DefaultPieDataset();
+        //graphic.setValue(key, value);
     }
 	
 	public static void decode(String serverData) {
