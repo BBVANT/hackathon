@@ -3,6 +3,8 @@ package tests;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 
 
 // APACHE  - para la REST API (coger los datos del servidor)
@@ -14,9 +16,9 @@ import org.apache.http.impl.client.HttpClients;
 
 // JSON - para interpretar los datos del servidor
 	import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
+	import org.json.simple.JSONArray;
+	import org.json.simple.parser.ParseException;
+	import org.json.simple.parser.JSONParser;
 	
 // JFREECHART - para crear las gráficas de datos
 	import org.jfree.chart.*;
@@ -73,14 +75,20 @@ public class JSONapi_y_completeGraphics {
 			JSONArray stats = (JSONArray)(((JSONObject)object.get("data")).get("stats"));
 			System.out.println("	Stats:");
 			byte month = 0, age = 0;
-			for(month = 0; month <= 2; month++){	// RepeticiÃ³n para todos los meses (3 -> 0 al 2)
-				System.out.println("		Date: " + (String)((JSONObject)stats.get(month)).get("date"));
+			ArrayList<ZipAgeStat> statsArray = new ArrayList<ZipAgeStat>();	// Array de estadisticas
+			for(month = 0; month <= 2; month++){	// Repeticion para todos los meses (3 -> 0 al 2)
+				statsArray.add(new ZipAgeStat());	// Creación del objeto (que almacena fecha y grupo de edad) en el array para esta vuelta
+				statsArray.get(month).date = (String)((JSONObject)stats.get(month)).get("date");	// Escritura de la fecha en el objeto
+				System.out.println("		Date: " + statsArray.get(month).date);
 				JSONArray histogram = (JSONArray)((JSONObject)stats.get(month)).get("histogram");
 				System.out.println("		Histogram:");
-				for(age = 0; age <= 7; age++){	// RepeticiÃ³n para todos los grupos de edad (8 -> 0 al 7)
+				for(age = 0; age <= 7; age++){	// Repeticion para todos los grupos de edad (8 -> 0 al 7)
+					statsArray.get(month).ageGroup.add(new AgeGroup());
 					System.out.println("			Ages: " + ((JSONObject)histogram.get(age)).get("ages"));
-					System.out.println("			Num_payments: " + ((JSONObject)histogram.get(age)).get("num_payments"));
-					System.out.println("			Avg: " + ((JSONObject)histogram.get(age)).get("avg"));
+					statsArray.get(month).ageGroup.get(age).numPayments = (long)((JSONObject)histogram.get(age)).get("num_payments");
+					System.out.println("			Num_payments: " + statsArray.get(month).ageGroup.get(age).numPayments);
+					statsArray.get(month).ageGroup.get(age).avg = (double)((JSONObject)histogram.get(age)).get("avg");
+					System.out.println("			Avg: " + statsArray.get(month).ageGroup.get(age).avg);
 					System.out.println("			----------");
 				}
 			}
