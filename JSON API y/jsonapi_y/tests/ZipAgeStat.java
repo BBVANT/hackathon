@@ -3,7 +3,7 @@ package tests;
 import java.util.ArrayList;
 
 public class ZipAgeStat {
-	public String date = null;
+	public int date = 0;
 	ArrayList<AgeGroup> ageGroup = new ArrayList<AgeGroup>();
 
 }
